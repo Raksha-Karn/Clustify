@@ -1,8 +1,4 @@
 import numpy as np
-import matplotlib.pyplot as plt
-
-clustered_data = np.array([[2, 10], [2, 5], [8, 4], [5, 8], [7,5], [6, 4], [1, 2], [4, 9]])
-print(clustered_data.shape)
 
 
 class KMeansClustering:
@@ -42,15 +38,3 @@ class KMeansClustering:
                 self.centroids = np.array(cluster_centers)
 
         return y
-
-from sklearn.datasets import make_blobs
-
-data = make_blobs(n_samples=100, n_features=2, centers=3)
-random_points = data[0]
-
-kmeans = KMeansClustering(k=3)
-labels = kmeans.fit(random_points)
-print(data[1])
-
-plt.scatter(random_points[:, 0], random_points[:, 1], c=labels)
-plt.scatter(kmeans.centroids[:, 0], kmeans_centroids[:, 1], c=range(len(kmeans.centroids)), marker="*", s=200)
