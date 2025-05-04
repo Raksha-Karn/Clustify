@@ -2,6 +2,7 @@
 # 📊 Clustify - K-Means Clustering from Scratch
 
 This project implements the **K-Means Clustering algorithm** using NumPy — a fundamental unsupervised learning technique for grouping data into `k` distinct clusters based on similarity.
+
 ---
 
 ### Final Clusters
