@@ -24,3 +24,33 @@ class KMeansClustering:
                 cluster_num = np.argmin(distances)
                 y.append(cluster_num)
             y = np.array(y)
+
+            cluster_indices = []
+            for i in range(self.k):
+                cluster_indices.append(np.argwhere(y == i))
+
+            cluster_centers = []
+            for i, indices in enumerate(cluster_indices):
+                if len(indices) == 0:
+                    cluster_centers.append(self.centroids[i])
+                else:
+                    cluster_centers.append(np.mean(X[indices], axis=0)[0])
+
+            if np.max(self.centroids - np.array(cluster_centers)) < 0.0001:
+                break
+            else:
+                self.centroids = np.array(cluster_centers)
+
+        return y
+
+from sklearn.datasets import make_blobs
+
+data = make_blobs(n_samples=100, n_features=2, centers=3)
+random_points = data[0]
+
+kmeans = KMeansClustering(k=3)
+labels = kmeans.fit(random_points)
+print(data[1])
+
+plt.scatter(random_points[:, 0], random_points[:, 1], c=labels)
+plt.scatter(kmeans.centroids[:, 0], kmeans_centroids[:, 1], c=range(len(kmeans.centroids)), marker="*", s=200)
